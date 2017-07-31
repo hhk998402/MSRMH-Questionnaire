@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN-Msrmh</title>
+    <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+</head>
+<body>
+<div id="page">
+    <div id="pagetop">
+        <p ><img src="/images/purple-logo.jpg" style="width: 200px; height: 65px; float: left; position: absolute; left: 0px; "><div style="font-size: x-large ; text-align: center; padding-top: 2%">LOGIN FORM</div></p>
+    </div>
+    <div id="header">* Required </div>
+    <div id="main">
+        <div class="content">
+            <div class="form-style-5">
+                <form action="/userform" method="post">
+                    <fieldset >
+                        <legend><span class="number">1</span> Enter Info</legend>
+                        <input type="text" name="field1" placeholder="Your Name *" required="required" >
+                        <input type="number" name="field13" placeholder="Your Age *" required="required" >
+                        <input type="email" name="field2" placeholder="Your Email ">
+                        <input type="number" name="field3" placeholder="Your mobile number*" required="required">
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ; display:inline">Enter Qualifications <br>
+                            <input type="text" name="field6" placeholder="" required="required" style="width: 30%">
+                            <input type="text" name="field7" placeholder="" style="width: 30%">
+                            <input type="text" name="field8" placeholder="" style="width: 30%">
+                        </label>
+                        <input type="text" name="field9" placeholder="KNC Year of passing*" required="required" >
+                        <input type="text" name="field14" placeholder="Post KNC experience in years*" required="required" >
+                        <input type="text" name="field10" placeholder="Present/Last job*" required="required" >
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Salary <br>
+                        <input type="text" name="field11" placeholder="Present *" required="required" style="width: 40%">
+                        <input type="text" name="field12" placeholder="Expected *" required="required" style="width: 40%">
+                        </label>
+                        <label for="job" style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ">Select Department</label>
+                        <select id="job" name="field4">
+                            <%
+                            for(var i=0;i<arrlength;i++)
+                            {
+                            %>
+                            <option value="<%=arr[i]%>"><%=arr[i]%></option>
+                            <%
+                            }
+                            %>
+                        </select>
+                        <input type="password" name="field5" placeholder="Enter password *" required="required">
+                    </fieldset>
+                    <input type="submit" value="START" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
