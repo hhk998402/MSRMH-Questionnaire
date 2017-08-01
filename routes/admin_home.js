@@ -5,7 +5,6 @@ var app = require('express');
 
 var con = mysql.createConnection({
     host: "localhost",
-    port:3307,
     user: "root",
     password: "mysql12345XXX",
     database:"project",
