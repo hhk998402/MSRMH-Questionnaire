@@ -24,7 +24,7 @@ exports.sendmail=function (i) {
             service: 'gmail',
             auth: {
                 user: 'msrmhQuizHelp@gmail.com',
-                pass: 'msrmhQuizHelp'
+                pass: 'msrmhQuizHelp1'
             }
         });
         var mailOptions = {
