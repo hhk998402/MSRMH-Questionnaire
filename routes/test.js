@@ -8,7 +8,6 @@ var currentnum;
 router.use(bodyParser.urlencoded({extended: false}));
 var connection = mysql.createConnection({
     host: "localhost",
-    port:3307,
     user: "root",
     password: "mysql12345XXX",
     database:"project",
