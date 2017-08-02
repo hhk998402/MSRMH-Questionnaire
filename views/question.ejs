@@ -28,16 +28,15 @@
             <div class="b" style="text-align: center">
                 <br>
                     <!--<a href="/test?questionnumber=1">-->
-                    <button class="btn" onclick="fn()">
+                    <button class="btn" onclick="fn()" id="start">
                         START
                     </button>
                 <!--</a>-->
                 <script>
                     function fn() {
 
-                        window.close();
-
                         window.open("/test?questionnumber=1");
+                        document.getElementById("start").disabled=true;
 
                     }
                 </script>
