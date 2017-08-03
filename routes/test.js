@@ -19,7 +19,7 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 var tl;
-connection.query("select * from user",function (err,res) {
+connection.query("select timelimit from user",function (err,res) {
     if(err) console.log("err");
     tl=res[0].timelimit;
 });
