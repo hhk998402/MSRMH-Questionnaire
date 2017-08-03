@@ -28,8 +28,12 @@ router.get('/', function (req, res, next) {
                 if (err) throw err;
             });
             res.render('fin', {
-                score: 0
+                score: 0,
+                ques:req.session.qlimit
+
             });
+            req.session.destroy();
+
         } else {
             function first(callback) {
                 score = req.session.score;
