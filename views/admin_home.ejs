@@ -116,7 +116,7 @@
     <p id="searchNotify"></p>
 
     <%
-    if(searchCount==0){
+    if(searchCount==0 && searchAttempt == 0){
     %>
     <br><br>
     <form action="/admin/<%=dept%>" method="get">
@@ -161,10 +161,17 @@
     </form>
     <%
     }
+    else if(searchCount==0 && searchAttempt == 1){
+        %>
+        <p id="noresult">No Result Found</p>
+    <%
+    }
     else {
     %>
+    <form action="/admin/<%=dept%>" method="get">
     <table border="1" id="tableSearch" class="responstable">
         <tr>
+            <td><b>Select</b></td>
             <td><b>Date</b></td>
             <td><b>Candidate name,Age,contact</b></td>
             <td><b>Qualification & year of passing</b></td>
@@ -178,6 +185,7 @@
         for(i=0;i<searchCount;i++){
         %>
         <tr>
+            <td><input type="checkbox" name="attendee" value="<%=aMobile[i]%>"/></td>
             <td><%=sDate[i]%></td>
             <td>Name: <%=sName[i]%><br>
                 Age: <%=sAge[i]%><br>
@@ -195,6 +203,10 @@
         }
         %>
     </table>
+        <div style="text-align: center">
+            <input type="submit" class="myButton" value="Delete"/> <br><br>
+        </div>
+    </form>
     <br><br>
     <%
     }
