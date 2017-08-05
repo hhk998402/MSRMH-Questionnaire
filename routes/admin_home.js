@@ -180,7 +180,7 @@ router.post('/admin/:dept', function (req, res) {
 
         //generateDates(req.params.dept);
         setTimeout(function () {
-            dateCount1 = dates.length;
+            //dateCount1 = dates.length;
             res.render('admin_home', {
                 dept: req.params.dept,
                 aDate: aDate,
@@ -196,7 +196,9 @@ router.post('/admin/:dept', function (req, res) {
                 aSalaryp:aSalaryp,
                 aSalarye:aSalarye,
                 attendeeCount: attendeeCount,
-                searchCount: searchCount
+                searchCount: searchCount,
+                searchAttempt : searchattempt
+
                 /*dates : dates,
                 dateCount : dateCount1*/
             });
@@ -342,7 +344,56 @@ function renderpage(req,res) {
 }
 var sql = "";
 
+/*
+function generateDates(department) {
+    sql = "select count(*) as count from " + department+";";
+    con.query(sql,function (err,result) {
+        if(err) throw err;
+        dateCount = result[0].count;
+    });
 
+    sql = "select date from " + department + ";";
+    con.query(sql,function (err,result) {
+        if(err) console.log("error encountered");
+        console.log(result);
+
+
+        for(var ij = 0 ; ij<dateCount;ij++){
+            var date = result[ij].date;
+            console.log(date);
+            con.query("select date('"+ date+"') as date;",function (err,result) {
+                if(err) throw err;
+                console.log(result);
+                var compare  =  result[0].date;
+                console.log("compare is "+ compare);
+                console.log(dates.length);
+                var compareflag =0 ;
+                for(var k=0 ; k<dates.length ; k++){
+                    if(dates[k] === compare)
+                    {
+                        compareflag =1;
+                        console.log("K is " +k);
+                        console.log("Same as " +dates[k]);
+                    }
+
+                }
+                if(compareflag === 0){
+                    dates[dates.length] =compare;
+                    console.log("date is "+ dates[dates.length]);
+                }
+
+            });
+
+        }
+
+
+        setTimeout(function () {
+            console.log(dates);
+        },300);
+
+    });
+}
+*/
 
 function addToDatabase(ques, department) {
     console.log(department);
@@ -628,5 +679,3 @@ function searchFromDatabase(searchName, department) {
  }*/
 
 module.exports = router;
-
-
