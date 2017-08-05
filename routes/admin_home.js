@@ -54,9 +54,9 @@ var i = 0;
 var details;
 var searchDetails ;
 var searchCount ;
-var dates= [];
+/*var dates= [];
 var dateCount1= 0;
-var dateCount= 0;
+var dateCount= 0;*/
 var searchName = undefined;
 
 router.get('/admin/:dept', function (req, res, next) {
@@ -121,7 +121,7 @@ router.get('/admin/:dept', function (req, res, next) {
             if (searchName !== undefined) {
                 searchFromDatabase(searchName, req.params.dept);
             }
-            generateDates(req.params.dept);
+            //generateDates(req.params.dept);
             console.log("5555555555555555555555555");
             console.log(searchDetails);
             console.log("5555555555555555555555555");
@@ -129,7 +129,7 @@ router.get('/admin/:dept', function (req, res, next) {
 
 
             setTimeout(function () {
-                dateCount1 = dates.length;
+                //dateCount1 = dates.length;
                 renderpage(req, res);
 
             }, 1000);
@@ -193,9 +193,9 @@ router.post('/admin/:dept', function (req, res) {
                 aSalaryp:aSalaryp,
                 aSalarye:aSalarye,
                 attendeeCount: attendeeCount,
-                searchCount: searchCount,
-                dates : dates,
-                dateCount : dateCount1
+                searchCount: searchCount
+                /*dates : dates,
+                dateCount : dateCount1*/
             });
         },500);
 
@@ -285,9 +285,9 @@ function renderpage(req,res) {
             sSalaryp:sSalaryp,
             sSalarye:sSalarye,
             attendeeCount: attendeeCount,
-            searchCount: searchCount,
-            dates : dates,
-            dateCount : dateCount1
+            searchCount: searchCount
+           /* dates : dates,
+            dateCount : dateCount1*/
         });
     }
     else{
@@ -306,15 +306,16 @@ function renderpage(req,res) {
             aSalaryp:aSalaryp,
             aSalarye:aSalarye,
             attendeeCount: attendeeCount,
-            searchCount: searchCount,
-            dates : dates,
-            dateCount : dateCount1
+            searchCount: searchCount
+           /* dates : dates,
+            dateCount : dateCount1*/
         });
     }
 
 }
 var sql = "";
 
+/*
 function generateDates(department) {
     sql = "select count(*) as count from " + department+";";
     con.query(sql,function (err,result) {
@@ -363,6 +364,7 @@ function generateDates(department) {
 
     });
 }
+*/
 
 function addToDatabase(ques, department) {
     console.log(department);
@@ -648,3 +650,4 @@ function searchFromDatabase(searchName, department) {
  }*/
 
 module.exports = router;
+
