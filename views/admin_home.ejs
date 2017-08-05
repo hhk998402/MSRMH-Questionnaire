@@ -93,29 +93,13 @@
 
     <form action="/adminDayReport/<%=dept%>" method="get" target="_blank" style="position: relative; text-align: center">
         <label style="font-size: large; color: #07144B">From :</label>
-        <select id="seldate" name="seldate"  class="Button" style="width: 30%;">
-            <%
-            for(var i=0;i<parseInt(dateCount);i++)
-            {
-                console.log(dates[i]);
-            %>
-            <option  value="<%= dates[i]%>"><%=dates[i]%></option>
-            <%
-            }
-            %>
-        </select>&nbsp;&nbsp;
+        <input type="date" id="seldate" name="seldate"  class="Button" style="width: 30%;">
+
+        </input>&nbsp;&nbsp;
         <label style="font-size: large; color: #07144B">To :</label>
-        <select id="seldateto" name="seldateto"  class="Button" style="width: 30%;">
-            <%
-            for(var i=0;i<parseInt(dateCount);i++)
-            {
-                console.log(dates[i]);
-            %>
-            <option  value="<%= dates[i]%>"><%=dates[i]%></option>
-            <%
-            }
-            %>
-        </select><br><br>
+        <input type="date" id="seldateto" name="seldateto"  class="Button" style="width: 30%;">
+
+        </input><br><br>
         <button type="submit" value="Go" name="goButton" class="myButton">Go</button>
 
     </form>
@@ -218,3 +202,4 @@
 </div>
 </body>
 </html>
+
