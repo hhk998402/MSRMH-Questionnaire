@@ -58,6 +58,7 @@ var searchCount ;
 var dateCount1= 0;
 var dateCount= 0;*/
 var searchName = undefined;
+var searchattempt ;
 
 router.get('/admin/:dept', function (req, res, next) {
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -106,6 +107,7 @@ router.get('/admin/:dept', function (req, res, next) {
 
             searchDetails = {};
             searchCount = 0;
+            searchattempt =0;
             console.log("start");
             details = attendeeDetails(req, req.params.dept);
             console.log("end");
@@ -120,6 +122,7 @@ router.get('/admin/:dept', function (req, res, next) {
 
             if (searchName !== undefined) {
                 searchFromDatabase(searchName, req.params.dept);
+                searchattempt=1;
             }
             //generateDates(req.params.dept);
             console.log("5555555555555555555555555");
@@ -230,7 +233,7 @@ function renderpage(req,res) {
     console.log(aQuesAns);
     console.log(aRes);
 
-    if (searchDetails !== undefined) {
+    if (searchDetails !== undefined && searchattempt === 1) {
         var sDate, sName, sMobile, sEmail, sQuesAns, sRes,sAge,sQ,sE,sKnc,sJob,sSalaryp,sSalarye;
         sDate = searchDetails.sDate;
         sName = searchDetails.sName;
@@ -285,9 +288,32 @@ function renderpage(req,res) {
             sSalaryp:sSalaryp,
             sSalarye:sSalarye,
             attendeeCount: attendeeCount,
-            searchCount: searchCount
+            searchCount: searchCount,
+            searchAttempt : searchattempt
            /* dates : dates,
             dateCount : dateCount1*/
+        });
+    }
+    else if(searchDetails === undefined && searchattempt === 1){
+        res.render('admin_home', {
+            dept: req.params.dept,
+            aDate: aDate,
+            aName: aName,
+            aMobile: aMobile,
+            aEmail: aEmail,
+            aRes: aRes,
+            aAge: aAge,
+            aQ : aQ,
+            aE : aE,
+            aKnc: aKnc,
+            aJob: aJob,
+            aSalaryp:aSalaryp,
+            aSalarye:aSalarye,
+            attendeeCount: attendeeCount,
+            searchCount: searchCount,
+            searchAttempt : searchattempt
+            /* dates : dates,
+             dateCount : dateCount1*/
         });
     }
     else{
@@ -306,7 +332,8 @@ function renderpage(req,res) {
             aSalaryp:aSalaryp,
             aSalarye:aSalarye,
             attendeeCount: attendeeCount,
-            searchCount: searchCount
+            searchCount: searchCount,
+            searchAttempt : searchattempt
            /* dates : dates,
             dateCount : dateCount1*/
         });
@@ -650,4 +677,5 @@ function searchFromDatabase(searchName, department) {
  }*/
 
 module.exports = router;
+
 
