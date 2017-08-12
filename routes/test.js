@@ -18,7 +18,6 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
 });
-<<<<<<< HEAD
 var tl;
 connection.query("select timelimit from user",function (err,res) {
     if(err) console.log("err");
