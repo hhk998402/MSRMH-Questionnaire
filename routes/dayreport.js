@@ -18,6 +18,8 @@ var dateto;
 var sql = "";
 var dept;
 router.post('/rep', function (req, res) {
+        if(req.session.a===1) {
+
     date = req.body.seldate;
     dateto = req.body.seldateto;
     dept = req.body.seldep;
@@ -68,7 +70,9 @@ router.post('/rep', function (req, res) {
 
 
     });
-
+   }
+    else
+        res.render('admin.ejs');
 
 });
 
