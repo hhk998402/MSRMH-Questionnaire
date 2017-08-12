@@ -18,11 +18,15 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
 });
+<<<<<<< HEAD
 var tl;
 connection.query("select timelimit from user",function (err,res) {
     if(err) console.log("err");
     tl=res[0].timelimit;
 });
+=======
+
+>>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
 router.get('/', function (req, res, next) {
 
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -78,8 +82,12 @@ router.get('/', function (req, res, next) {
                             option3: op3,
                             option4: op4,
                             ans: ans,
+<<<<<<< HEAD
                             tl:tl,
                             // img:img,
+=======
+                            tl : req.session.tlimit,                            
+>>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
                             a: a,
                             b: b,
                             r: req.session.qlimit
