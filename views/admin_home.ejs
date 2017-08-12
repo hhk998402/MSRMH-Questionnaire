@@ -18,26 +18,7 @@
         <p style="text-align: center; padding-top: 15px; font-size: large;position: inherit">ADMIN</p>
         <p style="text-align: center; padding-top: 10px; font-size: medium;position: inherit">HUMAN RESOURCES DEPARTMENT</p>
 
-<<<<<<< HEAD
     </div>
-=======
-    <form action="/adminDayReport/<%=dept%>" method="get" target="_blank" style="position: relative; text-align: center">
-        <label style="font-size: large; color: #07144B">From :</label>
-        <input type="date" id="seldate" name="seldate"  class="Button" style="width: 30%;">
-
-        </input>&nbsp;&nbsp;
-        <label style="font-size: large; color: #07144B">To :</label>
-        <input type="date" id="seldateto" name="seldateto"  class="Button" style="width: 30%;">
-
-        </input><br><br>
-        <button type="submit" value="Go" name="goButton" class="myButton">Go</button>
-
-    </form>
-    <br><br>
-    <br><br>
-
-    <h1 style="font-size: 30px; color: #07144B">4. List Of the Attendees</h1><br><br>
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
 
     <div id="main">
         <div class="content">
@@ -76,35 +57,15 @@
                     }
                 </script>
 
-<<<<<<< HEAD
                 <p id="demo"></p>
                 <p id="demo1"></p>
                 <br><br>
                 <h2 style="color:  black; font-size: 22px">2.CLICK TO VIEW / DELETE QUESTIONS --->     <a href="/admin/questionlist/<%=dept%>" name="ondelete">Delete </a> </h2>
                 <br><br>
-=======
-    <%
-    if(searchCount==0 && searchAttempt == 0){
-    %>
-    <br><br>
-    <form action="/admin/<%=dept%>" method="get">
-        <table border="1" id="tableMain" class="responstable">
-            <tr>
-                <td><b>Select</b></td>
-                <td><b>Date</b></td>
-                <td><b>Candidate name,Age,contact</b></td>
-                <td><b>Qualification & year of passing</b></td>
-                <td><b>Experience in years</b></td>
-                <td><b>Present/Last job</b></td>
-                <td><b>Present salary</b></td>
-                <td><b>Expected salary</b></td>
-                <td><b>Score</b></td>
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
 
                 <h2 style=" font-size: 22px ;color: black">3.CLICK TO VIEW LIST OF ATTENDEES --->      <a href="/admin/attendeeList/<%=dept%>" name="onshow" >Show </a> </h2><br><br>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="clear">&nbsp;</div>
     </div>
     <div id="footer">
@@ -112,66 +73,8 @@
             Msrmh quiz admin page.
         </p>
     </div>
-=======
-    </form>
-    <%
-    }
-    else if(searchCount==0 && searchAttempt == 1){
-        %>
-        <p id="noresult">No Result Found</p>
-    <%
-    }
-    else {
-    %>
-    <form action="/admin/<%=dept%>" method="get">
-    <table border="1" id="tableSearch" class="responstable">
-        <tr>
-            <td><b>Select</b></td>
-            <td><b>Date</b></td>
-            <td><b>Candidate name,Age,contact</b></td>
-            <td><b>Qualification & year of passing</b></td>
-            <td><b>Experience in years</b></td>
-            <td><b>Present/Last job</b></td>
-            <td><b>Present salary</b></td>
-            <td><b>Expected salary</b></td>
-            <td><b>Score</b></td>
-        </tr>
-        <%
-        for(i=0;i<searchCount;i++){
-        %>
-        <tr>
-            <td><input type="checkbox" name="attendee" value="<%=aMobile[i]%>"/></td>
-            <td><%=sDate[i]%></td>
-            <td>Name: <%=sName[i]%><br>
-                Age: <%=sAge[i]%><br>
-                No: <%=sMobile[i]%><br>
-                Email: <%=sEmail[i]%></td>
-            <td><%=sQ[i]%><br>
-                KnC: <%=sKnc[i]%></td>
-            <td><%=sE[i]%></td>
-            <td><%=sJob[i]%></td>
-            <td><%=sSalaryp[i]%></td>
-            <td><%=sSalarye[i]%></td>
-            <td><a href="/admin/answerlist/<%=dept%>/<%=sMobile[i]%>"  target="_blank"> <p><u><%=sRes[i]%></u></p></a></td>
-        </tr>
-        <%
-        }
-        %>
-    </table>
-        <div style="text-align: center">
-            <input type="submit" class="myButton" value="Delete"/> <br><br>
-        </div>
-    </form>
-    <br><br>
-    <%
-    }
-    %>
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
 </div>
 
 </body>
 </html>
-<<<<<<< HEAD
-=======
 
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
