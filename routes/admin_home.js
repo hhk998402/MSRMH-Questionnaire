@@ -300,7 +300,6 @@ function renderpage(req,res) {
             /* dates : dates,
              dateCount : dateCount1*/
 
-            searchAttempt : searchattempt
            /* dates : dates,
             dateCount : dateCount1*/
         });
@@ -325,7 +324,6 @@ function renderpage(req,res) {
             searchAttempt : searchattempt,
             dep:req.params.dept
 
-            searchAttempt : searchattempt
             /* dates : dates,
              dateCount : dateCount1*/
         });
@@ -352,7 +350,6 @@ function renderpage(req,res) {
 
             /* dates : dates,
              dateCount : dateCount1*/
-            searchAttempt : searchattempt
            /* dates : dates,
             dateCount : dateCount1*/
         });
