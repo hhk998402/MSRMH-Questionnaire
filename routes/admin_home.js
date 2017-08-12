@@ -177,11 +177,8 @@ router.post('/admin/:dept', function (req, res) {
         aJob=details.aJob;
         aSalaryp=details.aSalaryp;
         aSalarye=details.aSalarye;
-<<<<<<< HEAD
         console.log("-----------------------------"+req.params.dept);
-=======
 
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
         //generateDates(req.params.dept);
         setTimeout(function () {
             //dateCount1 = dates.length;
@@ -201,12 +198,9 @@ router.post('/admin/:dept', function (req, res) {
                 aSalarye:aSalarye,
                 attendeeCount: attendeeCount,
                 searchCount: searchCount,
-<<<<<<< HEAD
                 searchAttempt : searchattempt,
                 dep:req.params.dept
-=======
                 searchAttempt : searchattempt
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
 
                 /*dates : dates,
                 dateCount : dateCount1*/
@@ -306,11 +300,10 @@ function renderpage(req,res) {
 
             /* dates : dates,
              dateCount : dateCount1*/
-=======
+
             searchAttempt : searchattempt
            /* dates : dates,
             dateCount : dateCount1*/
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
         });
     }
     else if(searchDetails === undefined && searchattempt === 1){
@@ -330,13 +323,10 @@ function renderpage(req,res) {
             aSalarye:aSalarye,
             attendeeCount: attendeeCount,
             searchCount: searchCount,
-<<<<<<< HEAD
             searchAttempt : searchattempt,
             dep:req.params.dept
 
-=======
             searchAttempt : searchattempt
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
             /* dates : dates,
              dateCount : dateCount1*/
         });
@@ -358,17 +348,14 @@ function renderpage(req,res) {
             aSalarye:aSalarye,
             attendeeCount: attendeeCount,
             searchCount: searchCount,
-<<<<<<< HEAD
             searchAttempt : searchattempt,
             dep:req.params.dept
 
             /* dates : dates,
              dateCount : dateCount1*/
-=======
             searchAttempt : searchattempt
            /* dates : dates,
             dateCount : dateCount1*/
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
         });
     }
 
