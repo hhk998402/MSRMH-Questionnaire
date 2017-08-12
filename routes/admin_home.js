@@ -294,7 +294,6 @@ function renderpage(req,res) {
             sSalarye:sSalarye,
             attendeeCount: attendeeCount,
             searchCount: searchCount,
-<<<<<<< HEAD
             searchAttempt : searchattempt,
             dep:req.params.dept
 
