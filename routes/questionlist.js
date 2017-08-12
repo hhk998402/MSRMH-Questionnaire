@@ -4,7 +4,6 @@ var router = express.Router();
 
 var con = mysql.createConnection({
     host: "localhost",
-    port:3307,
     user: "root",
     password: "mysql12345XXX",
     database:"project",
@@ -26,8 +25,30 @@ var dept;
 router.get('/admin/questionlist/:dept', function (req, res, next) {
     console.log(req.params.dept);
     dept = req.params.dept;
+    var qtd = req.query.question;
+    console.log(qtd);
 
-    generateQuestionList();
+    function show(callback) {
+        if (qtd !== undefined) {
+            if (typeof qtd === "string") {
+                var questionstodelete = [];
+                questionstodelete.push(qtd);
+                console.log(questionstodelete);
+                deleteQuestion(questionstodelete, req.params.dept);
+            }
+            else {
+                console.log(qtd);
+                deleteQuestion(qtd, req.params.dept);
+                callback();
+            }
+        }
+        callback();
+    }
+
+    show(function () {
+        generateQuestionList();
+    });
+
 
     setTimeout(function () {
         res.render('questionlist',{
@@ -73,7 +94,27 @@ function generateQuestionList() {
 
     });
 }
-
+var sql="";
+function deleteQuestion(questionstodelete, department) {
+    console.log(questionstodelete.length);
+    for (var i = 0; i < questionstodelete.length; i++) {
+        sql = "delete from " + department + "_question_list where question = '" + questionstodelete[i] + "'";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Deleted Questions from " + department);
+        });
+    }
+    sql = "SET @count = 0;";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("set count to 0");
+    });
+    sql = "UPDATE " + department + "_question_list SET " + department + "_question_list.no = @count:= @count + 1;";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("qno are rearranged");
+    });
+}
 
 
 module.exports = router;

@@ -3,7 +3,6 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
     host: "localhost",
-    port:3307,
     user: "root",
     password: "mysql12345XXX",
     database:"project",
@@ -25,7 +24,7 @@ exports.sendmail=function (i) {
             service: 'gmail',
             auth: {
                 user: 'msrmhQuizHelp@gmail.com',
-                pass: 'msrmhQuizHelp'
+                pass: 'msrmhQuizHelp1'
             }
         });
         var mailOptions = {

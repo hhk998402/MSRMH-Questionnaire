@@ -191,7 +191,7 @@
     width: 100%;
     overflow: hidden;
     background: #FFF;
-    color: #024457;
+    color: BLACK;
     border-radius: 10px;
     border: 1px solid #167F92;
 }
@@ -291,7 +291,7 @@ h4{
     margin-right:auto;
 
     max-width: 100%;
-    background: lightblue;
+    background: #CFECEC;
     padding: 0px 20px 20px 20px;
     font: 12px Arial, Helvetica, sans-serif;
     color: #666;
@@ -317,7 +317,7 @@ h4{
     color: #888;
     width: 70%;
     padding: 0px 0px 0px 5px;
-    border: 0px solid #C5E2FF;
+    border: 0px solid lightblue;
     background: #FBFBFB;
     outline: 0;
     -webkit-box-shadow:inset 0px 1px 6px #ECF3F5;
@@ -343,7 +343,7 @@ h4{
     width: 70%;
 }
 .elegant-aero .button:hover{
-    background: #3EB1DD;
+    background: skyblue;
 }
 
 .container .check input {
@@ -568,9 +568,27 @@ h4{
     background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
     background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
-    background-color:#0061a7;
+    background-color:#1A1739 ;
 }
 .myButton:active {
     position:relative;
     top:1px;
+}
+.btn-group .button {
+    background-color: dodgerblue;
+    border: 1px darkblue;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+.btn-group .button:not(:last-child) {
+    border-right: none;
+}
+.btn-group .button:hover {
+    background-color: dodgerblue;
 }

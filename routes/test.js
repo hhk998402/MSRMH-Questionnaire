@@ -8,7 +8,7 @@ var currentnum;
 router.use(bodyParser.urlencoded({extended: false}));
 var connection = mysql.createConnection({
     host: "localhost",
-    port:3307,
+
     user: "root",
     password: "mysql12345XXX",
     database:"project",
@@ -17,6 +17,11 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
+});
+var tl;
+connection.query("select timelimit from user",function (err,res) {
+    if(err) console.log("err");
+    tl=res[0].timelimit;
 });
 router.get('/', function (req, res, next) {
 
@@ -73,6 +78,7 @@ router.get('/', function (req, res, next) {
                             option3: op3,
                             option4: op4,
                             ans: ans,
+                            tl:tl,
                             // img:img,
                             a: a,
                             b: b,

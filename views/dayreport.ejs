@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel='stylesheet' href='/styles/style.css'/>
+    <style>
+        body{
+            background: #CFECEC;
+        }
+    </style>
 </head>
 <body >
 <div style="text-align: right;">
@@ -9,7 +14,7 @@
     <button class="buttonDownload" onclick="exportToExcel('exTable')" value="Excel">Excel</button>
 </div>
 <div id=printarea style="text-align: center">
-    <h1 style="color: black">Report :  from   <%= date%> to <%= date2%></h1><br><br>
+    <h1 style="color: black">REPORT :  FROM   <%= date%> TO <%= date2%></h1><br><br>
     <table border="1" id="tableMain" class="responstable">
         <tr>
             <td><b>Date</b></td>

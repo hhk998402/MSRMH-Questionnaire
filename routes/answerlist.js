@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var router = express.Router();
 var con = mysql.createConnection({
     host: "localhost",
-    port:3307,
+
     user: "root",
     password: "mysql12345XXX",
     database:"project",
@@ -31,23 +31,43 @@ router.get('/admin/answerlist/:dept/:mobile', function (req, res, next) {
     generateAnswerList();
 
     setTimeout(function () {
-        res.render('answerlist', {
-            mobile: mobile,
-            questions: questions,
-            aAnswer : aAnswer,
-            cAnswers:cAnswers,
-            Name    : Name,
-            Email   : Email,
-            Marks   : Marks,
-            Age : Age,
-            Qualifications: Qualifications,
-            Knc : Knc,
-            Job : Job,
-            Salaryp : Salaryp,
-            Salarye : Salarye,
-            Experience : Experience,
-            count : count
-        });
+        if(questions !== undefined)
+        {
+
+            res.render('answerlist', {
+                mobile: mobile,
+                questions: questions,
+                aAnswer : aAnswer,
+                cAnswers:cAnswers,
+                Name    : Name,
+                Email   : Email,
+                Marks   : Marks,
+                Age : Age,
+                Qualifications: Qualifications,
+                Knc : Knc,
+                Job : Job,
+                Salaryp : Salaryp,
+                Salarye : Salarye,
+                Experience : Experience,
+                count : count
+            });
+        }
+        else{
+            res.render('answerlist', {
+                mobile: mobile,
+                Name    : Name,
+                Email   : Email,
+                Marks   : Marks,
+                Age : Age,
+                Qualifications: Qualifications,
+                Knc : Knc,
+                Job : Job,
+                Salaryp : Salaryp,
+                Salarye : Salarye,
+                Experience : Experience,
+                count : 0
+            });
+        }
     }, 1000);
 
 });
@@ -68,15 +88,21 @@ function generateAnswerList() {
         if (err) throw err;
         console.log(result);
         console.log(result[0].questionid);
-        var questionid = JSON.parse(result[0].questionid);
-        var i = 0;
-        questionNos = Object.keys(questionid);
-        console.log(questionNos);
-        for (var x in questionid) {
-            aAnswer[i] = questionid[x];
-            i++;
+        var xa = result[0].questionid ;
+        console.log(xa);
+        if(xa !== null)
+        {
+
+            var questionid = JSON.parse(result[0].questionid);
+            var i = 0;
+            questionNos = Object.keys(questionid);
+            console.log(questionNos);
+            for (var x in questionid) {
+                aAnswer[i] = questionid[x];
+                i++;
+            }
+            console.log(aAnswer);
         }
-        console.log(aAnswer);
     });
     sql = "select name,email,result,age,qualifications,knc,job,salaryp,salarye,experience from "+dept+" where mobile = '"+mobile+"';";
     con.query(sql,function (err,result) {
@@ -93,20 +119,26 @@ function generateAnswerList() {
         Qualifications=result[0].qualifications;
     });
     setTimeout(function () {
-        for (var i = 0; i < questionNos.length; i++) {
-            const pos = i;
-            con.query("select question,correct from " + dept + "_question_list where no = " + questionNos[i] + ";", function (err, result) {
-                if (err) throw err;
-                console.log(result);
-                questions[pos] = result[0].question;
-                cAnswers[pos] = result[0].correct;
-                console.log(questions);
-                console.log(cAnswers);
+        if(questionNos !== undefined)
+        {
 
-            });
+            for (var i = 0; i < questionNos.length; i++) {
+                const pos = i;
+                con.query("select question,correct from " + dept + "_question_list where no = " + questionNos[i] + ";", function (err, result) {
+                    if (err) throw err;
+                    console.log(result);
+                    questions[pos] = result[0].question;
+                    cAnswers[pos] = result[0].correct;
+                    console.log(questions);
+                    console.log(cAnswers);
+
+                });
+            }
         }
+
     }, 300);
 
 
 }
 module.exports = router;
+

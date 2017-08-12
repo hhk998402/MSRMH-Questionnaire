@@ -5,12 +5,32 @@
     <link rel="stylesheet" type="text/css" href="/styles/style.css" />
 
     <title>Admin</title>
+    <style>
+        body{
+            background: #CFECEC;
+        }
+    </style>
 </head>
 
 <body>
-<div style="text-align: center">
-    <h2 style="color: black; font-size: x-large">Choose questions to delete</h2>
-    <form action="/admin/<%=dept%>" method="post">
+<div style="display: inline-block">
+    <img src="/images/top.jpg" style="position: absolute; width: 100%"/>
+
+    <form action="/admin/<%=dept%>" method="get">
+
+        <button type="submit" name="back" class="myButton" value="Back" style="box-shadow: none; border: none; position: absolute; padding-top: 30px; float: left; left:0px;font-size: large">&#9664;  Back</button><br>
+    </form>
+</div>
+<%
+var s1=dept;
+var s2=s1.toUpperCase();
+%>
+<div style="padding-top: 10%">
+    <h2 style="color: black; text-align: center">DELETE QUESTIONS FROM <%=s2%> DEPARTMENT</h2><br><br>
+    <h2 style="color: black; font-size:large">Select questions to delete and click on delete button.</h2>
+    <h3 style="color: red; text-decoration: underline; text-decoration-color: black">NOTE: Questions once deleted will be permanently deleted from database</h3><br><br>
+    <h2 style="text-align: center; color: black">QUESTION LIST</h2>
+    <form action="/admin/questionlist/<%=dept%>" method="get">
         <table border="1" id="tableSearch" class="responstable">
             <tr>
                 <td><b>Select</b></td>
@@ -42,9 +62,11 @@
             }
             %>
         </table>
-
-        <input type="submit" class="Button" value="Delete"/>
+        <div style="text-align: center">
+        <input type="submit" class="Button"  style="color: black" value="Delete"/>
+        </div>
     </form>
+    <br><br><br><br><br>
 </div>
 </body>
 </html>

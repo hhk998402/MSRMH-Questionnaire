@@ -19,6 +19,9 @@ var admin_home = require('./routes/admin_home');
 var questionlist = require('./routes/questionlist');
 var answerlist = require('./routes/answerlist');
 var dayreport = require('./routes/dayreport');
+var report = require('./routes/report');
+var addQuestion = require('./routes/addQuestion');
+var attendeeList = require('./routes/attendeeList');
 
 var app = module.exports = express();
 
@@ -47,8 +50,11 @@ app.use('/fin', fin);
 app.get('/admin/:dept', admin_home);
 app.post('/admin/:dept', admin_home);
 app.get('/admin/questionlist/:dept', questionlist);
+app.get('/admin/addQuestion/:dept', addQuestion);
 app.get('/admin/answerlist/:dept/:mobile', answerlist);
-app.get('/adminDayReport/:dept', dayreport);
+app.get('/admin/attendeeList/:dept',attendeeList);
+app.post('/rep', dayreport);
+app.post('/report',report);
 
 app.post('/index', index);
 
@@ -62,7 +68,6 @@ app.post('/adm', function (req, res, next) {
 });
 var con = mysql.createConnection({
     host: "localhost",
-    port:3307,
     user: "root",
     password: "mysql12345XXX",
     database:"project"
@@ -164,168 +169,168 @@ app.post('/admin', urlencodedparser, function (req, res, next) {
 
 app.get('/admin', function (req, res, next) {
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-if(req.session.a===1) {
-    var newrow = req.query.newname;
-    console.log("***********");
-    console.log(newrow);
-    console.log("***********");
-    if (newrow !== undefined) {
-        console.log("###################");
+    if(req.session.a===1) {
+        var newrow = req.query.newname;
+        console.log("***********");
         console.log(newrow);
-        console.log("###################");
-        con.query("CREATE TABLE " + newrow + " LIKE nursing", function (err) {
-            if (err) console.log("error encountered");
-        });
-        con.query("CREATE TABLE " + newrow + "_question_list LIKE nursing_question_list", function (err) {
-            if (err) console.log("error encountered");
-        });
-        con.query("ALTER TABLE dep AUTO_INCREMENT=1", function (err) {
-            if (err) console.log("error encountered4");
-        });
+        console.log("***********");
+        if (newrow !== undefined) {
+            console.log("###################");
+            console.log(newrow);
+            console.log("###################");
+            con.query("CREATE TABLE " + newrow + " LIKE nursing", function (err) {
+                if (err) console.log("error encountered");
+            });
+            con.query("CREATE TABLE " + newrow + "_question_list LIKE nursing_question_list", function (err) {
+                if (err) console.log("error encountered");
+            });
+            con.query("ALTER TABLE dep AUTO_INCREMENT=1", function (err) {
+                if (err) console.log("error encountered4");
+            });
 
-        var sql = "insert into dep(depname) values ('" + newrow + "');";
-        con.query(sql, function (err) {
-            if (err) console.log("error encountered");
-        });
-    }
+            var sql = "insert into dep(depname) values ('" + newrow + "');";
+            con.query(sql, function (err) {
+                if (err) console.log("error encountered");
+            });
+        }
 
-    function first(callback) {
-        con.query("select count(*) as count from dep", function (err, result2) {
-            if (err) throw err;
-            console.log(result2);
+        function first(callback) {
+            con.query("select count(*) as count from dep", function (err, result2) {
+                if (err) throw err;
+                console.log(result2);
 
-            console.log(JSON.stringify(result2));
-            var x = JSON.stringify(result2);
-            console.log(x);
-            var y = JSON.parse(x);
-            console.log(y);
-            console.log(typeof y);
+                console.log(JSON.stringify(result2));
+                var x = JSON.stringify(result2);
+                console.log(x);
+                var y = JSON.parse(x);
+                console.log(y);
+                console.log(typeof y);
 
-            count = result2[0].count;
-        });
-        con.query("select * from dep", function (err, result1) {
-            if (err) throw err;
-            console.log(result1);
+                count = result2[0].count;
+            });
+            con.query("select * from dep", function (err, result1) {
+                if (err) throw err;
+                console.log(result1);
 
 
-            for (var i = 0; i < count; i++) {
-                depp[i] = result1[i].depname;
-                console.log(depp[i]);
-            }
-            console.log(JSON.stringify(result1));
-            console.log(depp);
+                for (var i = 0; i < count; i++) {
+                    depp[i] = result1[i].depname;
+                    console.log(depp[i]);
+                }
+                console.log(JSON.stringify(result1));
+                console.log(depp);
 
-            callback();
+                callback();
 
-        });
+            });
 
-    }
+        }
 
-    var newrow1 = req.query.newname1;
-    console.log("***********");
-    console.log(newrow1);
-    console.log("***********");
-    if (newrow1 !== undefined && newrow1 !== 'nursing') {
-        console.log("###################");
+        var newrow1 = req.query.newname1;
+        console.log("***********");
         console.log(newrow1);
-        console.log("###################");
-        con.query("DROP TABLE " + newrow1 + " ;", function (err, result) {
-            if (err) console.log("error encountered1");
-            console.log(result);
-        });
-        con.query("DROP TABLE " + newrow1 + "_question_list ;", function (err, result) {
-            if (err) console.log("error encountered2");
-            console.log(result);
+        console.log("***********");
+        if (newrow1 !== undefined && newrow1 !== 'nursing') {
+            console.log("###################");
+            console.log(newrow1);
+            console.log("###################");
+            con.query("DROP TABLE " + newrow1 + " ;", function (err, result) {
+                if (err) console.log("error encountered1");
+                console.log(result);
+            });
+            con.query("DROP TABLE " + newrow1 + "_question_list ;", function (err, result) {
+                if (err) console.log("error encountered2");
+                console.log(result);
+
+            });
+            sql = "delete from dep where depname = '" + newrow1 + "';";
+            con.query(sql, function (err) {
+                if (err) console.log("error encountered3");
+            });
+            con.query("ALTER TABLE dep AUTO_INCREMENT=1", function (err) {
+                if (err) console.log("error encountered4");
+            });
+
+
+        }
+
+        first(function () {
+
+            res.render('adminpage.ejs', {
+                count: count,
+                dep: depp
+            });
 
         });
-        sql = "delete from dep where depname = '" + newrow1 + "';";
-        con.query(sql, function (err) {
-            if (err) console.log("error encountered3");
-        });
-        con.query("ALTER TABLE dep AUTO_INCREMENT=1", function (err) {
-            if (err) console.log("error encountered4");
-        });
-
-
     }
-
-    first(function () {
-
-        res.render('adminpage.ejs', {
-            count: count,
-            dep: depp
-        });
-
-    });
-}
-else{
-    res.render('admin.ejs');
-}
+    else{
+        res.render('admin.ejs');
+    }
 
 });
 app.post('/admins', function (req, res, next) {
-if(req.session.a===1) {
-    var newrow = req.query.newname;
-    console.log("***********");
-    console.log(newrow);
-    console.log("***********");
-    if (newrow !== undefined) {
-        console.log("###################");
+    if(req.session.a===1) {
+        var newrow = req.query.newname;
+        console.log("***********");
         console.log(newrow);
-        console.log("###################");
-        con.query("CREATE TABLE " + newrow + " LIKE nursing", function (err) {
-            if (err) console.log("error encountered");
-        });
-        var sql = "insert into dep(depname) values ('" + newrow + "');";
-        con.query(sql, function (err) {
-            if (err) console.log("error encountered");
+        console.log("***********");
+        if (newrow !== undefined) {
+            console.log("###################");
+            console.log(newrow);
+            console.log("###################");
+            con.query("CREATE TABLE " + newrow + " LIKE nursing", function (err) {
+                if (err) console.log("error encountered");
+            });
+            var sql = "insert into dep(depname) values ('" + newrow + "');";
+            con.query(sql, function (err) {
+                if (err) console.log("error encountered");
+            });
+        }
+
+        function first(callback) {
+            con.query("select count(*) as count from dep", function (err, result2) {
+                if (err) throw err;
+                console.log(result2);
+
+                console.log(JSON.stringify(result2));
+                var x = JSON.stringify(result2);
+                console.log(x);
+                var y = JSON.parse(x);
+                console.log(y);
+                console.log(typeof y);
+
+                count = result2[0].count;
+            });
+            con.query("select * from dep", function (err, result1) {
+                if (err) throw err;
+                console.log(result1);
+
+
+                for (var i = 0; i < count; i++) {
+                    depp[i] = result1[i].depname;
+                    console.log(depp[i]);
+                }
+                console.log(JSON.stringify(result1));
+                console.log(depp);
+
+                callback();
+
+            });
+
+        }
+
+        first(function () {
+
+            res.render('adminpage.ejs', {
+                count: count,
+                dep: depp
+            });
+
         });
     }
-
-    function first(callback) {
-        con.query("select count(*) as count from dep", function (err, result2) {
-            if (err) throw err;
-            console.log(result2);
-
-            console.log(JSON.stringify(result2));
-            var x = JSON.stringify(result2);
-            console.log(x);
-            var y = JSON.parse(x);
-            console.log(y);
-            console.log(typeof y);
-
-            count = result2[0].count;
-        });
-        con.query("select * from dep", function (err, result1) {
-            if (err) throw err;
-            console.log(result1);
-
-
-            for (var i = 0; i < count; i++) {
-                depp[i] = result1[i].depname;
-                console.log(depp[i]);
-            }
-            console.log(JSON.stringify(result1));
-            console.log(depp);
-
-            callback();
-
-        });
-
+    else{
+        res.render('admin.ejs');
     }
-
-    first(function () {
-
-        res.render('adminpage.ejs', {
-            count: count,
-            dep: depp
-        });
-
-    });
-}
-else{
-    res.render('admin.ejs');
-}
 
 });
 app.post('/forpwd', function (req, res, next) {
@@ -357,7 +362,7 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
         if (err) console.log("error encountered");
         userpassword = result[0].password;
         if (pswd === userpassword) {
-            con.query("insert into " + dep + " (name,mobile,email,age,qualifications,knc,experience,job,salaryp,salarye) values ('" + req.body.field1 + "','" + req.body.field3 + "','" + req.body.field2 + "','" + req.body.field13 + "','" + req.body.field6 +"\n "+ req.body.field7 +"\n "+req.body.field8+ "','" + req.body.field9 + "','" + req.body.field14 + "','" + req.body.field10 + "','" + req.body.field11 +"','"+ req.body.field12 + "')", function (err, result, fields) {
+            con.query("insert into " + dep + " (name,mobile,email,age,qualifications,knc,experience,job,salaryp,salarye) values ('" + req.body.field1 + "','" + req.body.field3 + "','" + req.body.field2 + "','" + req.body.field13 + "','" + req.body.field6 +"\n "+ req.body.field7 +"\n "+req.body.field8+ "','" + req.body.field9 + "\n "+req.body.field15+"','" + req.body.field14 + "','" + req.body.field10 + "','" + req.body.field11 +"','"+ req.body.field12 + "')", function (err, result, fields) {
 
                 if (err) console.log("error encountered");
                 req.session.number=req.body.field3;
@@ -367,6 +372,7 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
                 if (err) console.log("error encountered");
                 time = result[0].timelimit;
                 noques = result[0].questions;
+                console.log("------------------------------------------")
                 res.redirect('/question')
                 // res.render('start.ejs', {num: noques, tlimit: time});
             });
@@ -484,12 +490,12 @@ app.post('/quesc', function (req, res, next) {
 
 app.post('/aques', urlencodedparser, function (req, res, next) {
 
-if(req.session.a===1) {
-    res.render('adminpage.ejs');
-}
-else{
-    res.render('admin.ejs');
-}
+    if(req.session.a===1) {
+        res.render('adminpage.ejs');
+    }
+    else{
+        res.render('admin.ejs');
+    }
 });
 app.post('/addit', function (req, res) {
     if(req.session.a===1) {

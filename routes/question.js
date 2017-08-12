@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
         if(req.session.i=true){
             var connection = mysql.createConnection({
                 host: "localhost",
-                port:3307,
+     
                 user: "root",
                 password: "mysql12345XXX",
                 database:"project",
