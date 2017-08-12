@@ -68,10 +68,6 @@ app.post('/adm', function (req, res, next) {
 });
 var con = mysql.createConnection({
     host: "localhost",
-<<<<<<< HEAD
-=======
-   
->>>>>>> 509de12144ba348b30861d077c7ff8669c5d940f
     user: "root",
     password: "mysql12345XXX",
     database:"project"
