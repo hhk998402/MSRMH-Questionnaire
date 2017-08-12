@@ -200,7 +200,7 @@ router.post('/admin/:dept', function (req, res) {
                 searchCount: searchCount,
                 searchAttempt : searchattempt,
                 dep:req.params.dept
-                searchAttempt : searchattempt
+            
 
                 /*dates : dates,
                 dateCount : dateCount1*/
