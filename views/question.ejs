@@ -20,6 +20,16 @@
     <div id="header">   Read the instructions carefully    <BR><br>
         <h3 style="color: black; text-align: center">WRITTEN TEST FOR <%= s2%> RECRUITMENT</h3>
     </div>
+    <script>
+        var mins=parseInt("<%= tlimit%>");
+        var seconds = 60;
+        function setCookie(cname,cvalue) {
+            document.cookie = cname+"="+cvalue;
+        }
+        setCookie("minutes",mins)
+        setCookie("seconds",seconds)
+
+    </script>
 
     <div id="main">
         <div class="content">
@@ -37,10 +47,10 @@
             </div>
             <div class="b" style="text-align: center">
                 <br>
-                    <!--<a href="/test?questionnumber=1">-->
-                    <button class="btn" onclick="fn()" id="start">
-                        START
-                    </button>
+                <!--<a href="/test?questionnumber=1">-->
+                <button class="btn" onclick="fn()" id="start">
+                    START
+                </button>
                 <!--</a>-->
                 <script>
                     function fn() {
