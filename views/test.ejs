@@ -63,7 +63,7 @@
             <% for(var j = 0;j < selectedc;j++){ %>
             <% if(parseInt(selected[j]) === parseInt(questionnum)){ %>
             <script>
-                document.getElementById("select").innerHTML = "";
+                document.getElementById("select").innerHTML = "Selected is " + "<%= value[j] %>";
             </script>
             <% } %>
             <% } %>
