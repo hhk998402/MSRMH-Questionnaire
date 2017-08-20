@@ -56,7 +56,8 @@ router.get('/', function (req, res, next) {
                 map = req.session.correctmap;
                 res.render('fin', {
                     score: score,
-                    ques:req.session.qlimit
+                    ques:req.session.qlimit,
+                    name:req.session.name
                 });
                 callback();
             }
