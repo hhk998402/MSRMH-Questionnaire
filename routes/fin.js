@@ -22,6 +22,10 @@ router.get('/', function (req, res, next) {
     if(req.session.rano === undefined){
         res.redirect('/');
     }else {
+        connection.query("insert into " + req.session.dep + " (name,mobile,email,age,qualifications,knc,experience,job,salaryp,salarye) values ('" + req.session.field1 + "','" + req.session.field3 + "','" + req.session.field2 + "','" + req.session.field13 + "','" + req.session.field6 +"\n "+ req.session.field7 +"\n "+req.session.field8+ "','" + req.session.field9 + "\n "+req.session.field15+"','" + req.session.field14 + "','" + req.session.field10 + "','" + req.session.field11 +"','"+ req.session.field12 + "')", function (err, result, fields) {
+            if (err) console.log("error encountered");
+        });
+
         if (req.session.que === undefined) {
             var a = '{"0":"0"}';
             connection.query("update " + req.session.dep + " set questionid = '" + a + "' where mobile = '" + req.session.number + "';", function (err) {
@@ -31,6 +35,7 @@ router.get('/', function (req, res, next) {
                 score: 0,
                 ques:req.session.qlimit,
                 name:req.session.name
+
 
             });
             req.session.destroy();
@@ -55,6 +60,7 @@ router.get('/', function (req, res, next) {
                     if (err) throw err;
                 });
                 map = req.session.correctmap;
+                console.log(req.session.name);
                 res.render('fin', {
                     score: score,
                     ques:req.session.qlimit,
