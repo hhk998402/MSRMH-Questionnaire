@@ -29,7 +29,8 @@ router.get('/', function (req, res, next) {
             });
             res.render('fin', {
                 score: 0,
-                ques:req.session.qlimit
+                ques:req.session.qlimit,
+                name:req.session.name
 
             });
             req.session.destroy();
