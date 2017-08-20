@@ -28,6 +28,7 @@
         <h1 style="color: black; text-align: center; font-family:'Segoe MDL2 Assets'">TIME REMAINING :       <div id="timer"><%=tl%></div> </h1><br>
         <h3 style="text-align: center; text-decoration: underline">Select question number to navigate</h3>
         <div class="button-container">
+            <div id="select"></div>
             <% for (var i = 0;i < r;i++){
                 var flag = 0;
                 for (var k = 0; k < selectedc; k++) {
@@ -62,7 +63,7 @@
             <% for(var j = 0;j < selectedc;j++){ %>
             <% if(parseInt(selected[j]) === parseInt(questionnum)){ %>
             <script>
-                document.getElementById("select").innerHTML = "Selected is " + "<%= value[j] %>";
+                document.getElementById("select").innerHTML = "";
             </script>
             <% } %>
             <% } %>
@@ -140,25 +141,25 @@
         <br>
         <div style="font-size: large; padding-left: 2%; margin: auto; font-family: 'Adobe Caslon Pro'">
 
-                <h2 style="color: black;"><%= questionnum %>.<%= question %></h2>
-        <form action="collect" method="get">
-                    <blockquote>
-                        <p>
-                        <h3 style="color: black"><input type="radio" name='q' value="1"> A. <%= option1 %><br></h3>
-                        <h3 style="color: black"><input type="radio" name='q' value="2"> B. <%= option2 %><br></h3>
-                        <h3 style="color: black"><input type="radio" name='q' value="3"> C. <%= option3 %><br></h3>
-                        <h3 style="color: black"><input type="radio" name='q' value="4"> D. <%= option4 %></h3>
-                        </p>
-                        <br>
-                    </blockquote>
-                        <% if(questionnum <= r){ %>
-                        <input type="submit" class="btn" style="background: #07144B; color: white" value="Submit/Next" >
-                        <% } %>
-                        <input type="text" value=" <%= questionnum %>" name="num" hidden>
-                </form>
+            <h2 style="color: black;"><%= questionnum %>.<%= question %></h2>
+            <form action="collect" method="get">
+                <blockquote>
+                    <p>
+                    <h3 style="color: black"><input type="radio" name='q' value="1"> A. <%= option1 %><br></h3>
+                    <h3 style="color: black"><input type="radio" name='q' value="2"> B. <%= option2 %><br></h3>
+                    <h3 style="color: black"><input type="radio" name='q' value="3"> C. <%= option3 %><br></h3>
+                    <h3 style="color: black"><input type="radio" name='q' value="4"> D. <%= option4 %></h3>
+                    </p>
+                    <br>
+                </blockquote>
+                <% if(questionnum <= r){ %>
+                <input type="submit" class="btn" style="background: #07144B; color: white" value="Submit/Next" >
+                <% } %>
+                <input type="text" value=" <%= questionnum %>" name="num" hidden>
+            </form>
 
-            </div>
- </div>
+        </div>
+    </div>
 </div>
 <img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 20%">
 </body>
