@@ -63,26 +63,27 @@
             <% for(var j = 0;j < selectedc;j++){ %>
             <% if(parseInt(selected[j]) === parseInt(questionnum)){ %>
             <script>
-                document.getElementById("select").innerHTML = "Selected is " + "<%= value[j] %>";
+                document.getElementById("select").innerHTML = "";
             </script>
             <% } %>
             <% } %>
         </div>
-        
+        <script>
+            function fun() {
+                var ask = window.confirm("DO YOU WANT TO FINISH THE TEST?");
+                if (ask) {
+                    delete_cookie('seconds');
+                    delete_cookie('minutes');
+                    document.location.href = "/fin";
+                }
+            }
+        </script>
     </div>
 
     <div style="float: left; width: 65%">
         <div style="width:2px; background-color:#07144B; height: 100%;position:absolute; padding-top: inherit ; left:65%; ">&nbsp;</div>
         <script type="text/javascript">
             var timeoutHandle;
-            function fun() {
-                var ask = window.confirm("DO YOU WANT TO FINISH THE TEST?");
-                if (ask) {
-                    delete_cookie('seconds');
-                    delete_cookie('minutes');
-                    window.location.href = "/fin";
-                }
-            }
             function countdown(minutes,stat) {
                 var seconds = 60;
                 var mins = minutes;
