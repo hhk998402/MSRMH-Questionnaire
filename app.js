@@ -72,11 +72,10 @@ var con = mysql.createConnection({
     password: "mysql12345XXX",
     database:"project"
 });
-
 var arr = [];
-var arrlength;
 app.post('/usr', function (req, res, next) {
-
+    var arrlength;
+    var msg="";
     function show(callback) {
         con.query("SELECT * FROM dep;", function (err, results) {
             if (err) console.log("error encountered");
@@ -91,7 +90,8 @@ app.post('/usr', function (req, res, next) {
     show(function () {
         res.render('userform.ejs', {
             arr: arr,
-            arrlength: arrlength
+            arrlength: arrlength,
+            msg : msg
         });
     });
 });
@@ -358,7 +358,21 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
     pswd = req.body.field5;
     dep = req.body.field4;
     req.session.dep=dep;
+    req.session.name = req.body.field1;
     console.log(dep);
+    var questionCount;
+
+    var arrlength;
+    var msg="";
+
+    con.query("SELECT * FROM dep;", function (err, results) {
+            if (err) console.log("error encountered");
+            for (var i = 0; i < results.length; i++)
+                arr[i] = results[i].depname;
+                arrlength = arr.length;
+
+    });
+
     con.query("select password from user", function (err, result, fields) {
         if (err) console.log("error encountered");
         userpassword = result[0].password;
@@ -369,18 +383,44 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
                 req.session.number=req.body.field3;
             });
             var time, noques;
+            con.query("select count(*) as count from "+dep+"_question_list",function (err,result) {
+               if(err) console.log("error encountered");
+               questionCount = result[0].count;
+
+
+            });
             con.query("select timelimit,questions from user", function (err, result, fields) {
                 if (err) console.log("error encountered");
                 time = result[0].timelimit;
                 noques = result[0].questions;
-                console.log("------------------------------------------")
-                res.redirect('/question')
+                console.log("------------------------------------------");
+                console.log(questionCount);
+                console.log(noques);
+                console.log("------------------------------------------");
+
+                if(noques>questionCount){
+                    msg = "Insufficient Questions in the database to start the test.Contact the Admin";
+                    res.render('userform.ejs', {
+                        arr: arr,
+                        arrlength: arrlength,
+                        msg :msg
+                    });
+                }
+
+                else{
+                    msg="";
+                    res.redirect('/question')
+                }
+
                 // res.render('start.ejs', {num: noques, tlimit: time});
             });
 
+
         }
         else {
-            res.render('userform.ejs');
+            res.render('userform.ejs', {
+                arr: arr,
+                arrlength: arrlength});
         }
     });
 
@@ -531,6 +571,8 @@ app.use(function (err, req, res, next) {
 
 
 module.exports = app;
+
+
 
 
 
