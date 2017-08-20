@@ -120,4 +120,19 @@
     font-family:Arial, Helvetica, sans-serif;
     margin-left:23px;
 }
+.btn-2e {
+    border-radius: 5px;
+    width: 46px;
+    height: 45px;
+    box-shadow: -6px 0 white;
+}
 
+.btn-2e:hover {
+    box-shadow: -4px 0 white;
+    left: -2px;
+}
+
+.btn-2e:active {
+    box-shadow: 0 0 white;
+    left: -6px;
+}
