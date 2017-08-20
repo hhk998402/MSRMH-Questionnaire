@@ -3,15 +3,25 @@ var router = express.Router();
 var http = require('http');
 var HashMap = require('hashmap');
 var mysql = require('mysql');
-var map = new HashMap();
 var incorans=new HashMap();
-var corans=new HashMap();
 var json = require('json-object');
 var map2 = new HashMap();
+var map;
+var corans,select;
 var qu={};
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    if(!req.session.que) req.session.que={};
+    if(!req.session.que) {
+        req.session.que={};
+    }
+    if(parseInt(req.session.ab1)===1){
+        map = new HashMap();
+        req.session.ab1=2;
+    }
+    if(!req.session.corans) {
+        corans=new HashMap();
+        req.session.corans=corans;
+    }
     if(!req.session.corans) {
         corans=new HashMap();
         req.session.corans=corans;
@@ -23,7 +33,9 @@ router.get('/', function (req, res, next) {
     var ans = parseInt(req.query.q);
     map.set(a, ans);
     var key = map.keys();
+    req.session.selected=key;
     var value = map.values();
+    req.session.value=value;
     if(!req.session.score) req.session.score =0;
     for (var i = 0; i < req.session.qlimit; i++) {
         if(i+1===a){
@@ -46,7 +58,6 @@ router.get('/', function (req, res, next) {
             incorans.set(a, correctans[i]);
             req.session.incorrectmap=incorans;
         }
-
     }
     res.redirect("/test?questionnumber=" + n);
 });
