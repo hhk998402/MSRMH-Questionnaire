@@ -62,6 +62,12 @@ router.get('/', function (req, res, next) {
                     }
 
                     search(function (m) {
+                        var l;
+                        if(!req.session.selected) {
+                            l=[];
+                        }else {
+                            l=req.session.selected;
+                        }
                         var qu = rows[m - 1].question;
                         var op1 = rows[m - 1].ans1;
                         var op2 = rows[m - 1].ans2;
@@ -81,10 +87,14 @@ router.get('/', function (req, res, next) {
                             ans: ans,
                             tl:tl,
                             // img:img,
-                            tl : req.session.tlimit,                            
+                            tl : req.session.tlimit,
                             a: a,
                             b: b,
-                            r: req.session.qlimit
+                            r: req.session.qlimit,
+                            selected:req.session.selected,
+                            selectedc:l.length,
+                            value:req.session.value
+
                         });
                     });
                 }
