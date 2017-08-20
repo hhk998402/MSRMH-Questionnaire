@@ -74,8 +74,9 @@ var con = mysql.createConnection({
 });
 
 var arr = [];
+var arrlength;
 app.post('/usr', function (req, res, next) {
-    var arrlength;
+
     function show(callback) {
         con.query("SELECT * FROM dep;", function (err, results) {
             if (err) console.log("error encountered");
