@@ -15,6 +15,18 @@
 </div>
 <div id=printarea style="text-align: center">
     <h2 style="color: black">REPORT :  FROM   <%= date%> TO <%= date2%></h2><br><br>
+
+    <%
+    if(c==0){
+    %>
+    <p id="no_record" style="color: black; font-size:large"><%= msg%></p>
+
+    <%
+    }
+    else{
+
+
+    %>
     <table border="1" id="tableMain" class="responstable">
         <tr>
             <td><b>Date</b></td>
@@ -47,6 +59,9 @@
         }
         %>
     </table>
+    <%
+    }
+    %>
 </div>
 <script>
 
