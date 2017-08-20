@@ -70,7 +70,8 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "mysql12345XXX",
-    database:"project"
+    database:"project",
+    dateStrings: 'date'
 });
 var arr = [];
 app.post('/usr', function (req, res, next) {
@@ -366,10 +367,10 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
     var msg="";
 
     con.query("SELECT * FROM dep;", function (err, results) {
-            if (err) console.log("error encountered");
-            for (var i = 0; i < results.length; i++)
-                arr[i] = results[i].depname;
-                arrlength = arr.length;
+        if (err) console.log("error encountered");
+        for (var i = 0; i < results.length; i++)
+            arr[i] = results[i].depname;
+        arrlength = arr.length;
 
     });
 
@@ -377,15 +378,29 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
         if (err) console.log("error encountered");
         userpassword = result[0].password;
         if (pswd === userpassword) {
-            con.query("insert into " + dep + " (name,mobile,email,age,qualifications,knc,experience,job,salaryp,salarye) values ('" + req.body.field1 + "','" + req.body.field3 + "','" + req.body.field2 + "','" + req.body.field13 + "','" + req.body.field6 +"\n "+ req.body.field7 +"\n "+req.body.field8+ "','" + req.body.field9 + "\n "+req.body.field15+"','" + req.body.field14 + "','" + req.body.field10 + "','" + req.body.field11 +"','"+ req.body.field12 + "')", function (err, result, fields) {
+            req.session.field1=req.body.field1;
+            req.session.field3=req.body.field3;
+            req.session.field2=req.body.field2;
+            req.session.field13=req.body.field13;
+            req.session.field6=req.body.field6;
+            req.session.field7=req.body.field7;
+            req.session.field8=req.body.field8;
+            req.session.field9=req.body.field9;
+            req.session.field15=req.body.field15;
+            req.session.field14=req.body.field14;
+            req.session.field10=req.body.field10;
+            req.session.field11=req.body.field11;
+            req.session.field12=req.body.field12;
+            req.session.number=req.body.field3;
+            //con.query("insert into " + dep + " (name,mobile,email,age,qualifications,knc,experience,job,salaryp,salarye) values ('" + req.body.field1 + "','" + req.body.field3 + "','" + req.body.field2 + "','" + req.body.field13 + "','" + req.body.field6 +"\n "+ req.body.field7 +"\n "+req.body.field8+ "','" + req.body.field9 + "\n "+req.body.field15+"','" + req.body.field14 + "','" + req.body.field10 + "','" + req.body.field11 +"','"+ req.body.field12 + "')", function (err, result, fields) {
 
-                if (err) console.log("error encountered");
-                req.session.number=req.body.field3;
-            });
+            //     if (err) console.log("error encountered");
+            //     req.session.number=req.body.field3;
+            // });
             var time, noques;
             con.query("select count(*) as count from "+dep+"_question_list",function (err,result) {
-               if(err) console.log("error encountered");
-               questionCount = result[0].count;
+                if(err) console.log("error encountered");
+                questionCount = result[0].count;
 
 
             });
@@ -421,7 +436,7 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
             res.render('userform.ejs', {
                 arr: arr,
                 arrlength: arrlength,
-                 msg:msg
+                msg:msg
 
             });
         }
