@@ -31,7 +31,7 @@ router.get('/admin/answerlist/:dept/:mobile', function (req, res, next) {
     generateAnswerList();
 
     setTimeout(function () {
-        if(questions !== undefined)
+        if(questions.length>0)
         {
 
             res.render('answerlist', {
@@ -127,10 +127,12 @@ function generateAnswerList() {
                 con.query("select question,correct from " + dept + "_question_list where no = " + questionNos[i] + ";", function (err, result) {
                     if (err) throw err;
                     console.log(result);
-                    questions[pos] = result[0].question;
-                    cAnswers[pos] = result[0].correct;
-                    console.log(questions);
-                    console.log(cAnswers);
+                    if(result[0] !== undefined){
+                        questions[pos] = result[0].question;
+                        cAnswers[pos] = result[0].correct;
+                        console.log(questions);
+                        console.log(cAnswers);
+                    }
 
                 });
             }
@@ -141,4 +143,6 @@ function generateAnswerList() {
 
 }
 module.exports = router;
+
+
 
