@@ -420,7 +420,10 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
         else {
             res.render('userform.ejs', {
                 arr: arr,
-                arrlength: arrlength});
+                arrlength: arrlength,
+                 msg:msg
+
+            });
         }
     });
 
