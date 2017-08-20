@@ -75,6 +75,7 @@ var con = mysql.createConnection({
 });
 var arr = [];
 app.post('/usr', function (req, res, next) {
+    req.session.destroy();
     var arrlength;
     var msg="";
     function show(callback) {
