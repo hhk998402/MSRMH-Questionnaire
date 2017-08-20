@@ -87,7 +87,10 @@ router.get('/', function (req, res, next) {
                 res.render('question', {
                     rand: req.session.rano,
                     num:req.session.qlimit,
-                    tlimit:req.session.tlimit
+                    tlimit:req.session.tlimit,
+                    name : req.session.name,
+                    dep : req.session.dep
+
                 });
             });
         }
