@@ -27,12 +27,14 @@
     </div> <div style="float: right; width: 30%;">
         <h1 style="color: black; text-align: center; font-family:'Segoe MDL2 Assets'">TIME REMAINING :       <div id="timer"><%=tl%></div> </h1><br>
         <h3 style="text-align: center; text-decoration: underline">Select question number to navigate</h3>
+        <h3 style="text-align: center; text-decoration: underline;"><div style="color: green;display: inline">Green</div>  &#8658; Answered questions</h3>
+
         <div class="button-container">
             <div id="select"></div>
             <% for (var i = 0;i < r;i++){
                 var flag = 0;
                 for (var k = 0; k < selectedc; k++) {
-                    if (parseInt(selected[k]) == i + 1) {
+                    if (parseInt(selected[k]) == i + 1 && value[i]!==null) {
                         flag = 1;
                         break;
                     }
@@ -41,7 +43,7 @@
             %>
 
             <a href="/test?questionnumber=<%= i + 1 %>"> <input type="submit" class="btn-2e" value="<%= i + 1 %>"
-                                                                style="background: green"></a>
+                                                                style="background: green; color: black;"></a>
             <% }
             else{ %>
 
@@ -74,7 +76,7 @@
                 if (ask) {
                     delete_cookie('seconds');
                     delete_cookie('minutes');
-                    document.location.href = "/fin";
+                    window.location.href = "/fin";
                 }
             }
         </script>
