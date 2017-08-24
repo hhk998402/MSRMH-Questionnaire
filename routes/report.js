@@ -57,7 +57,9 @@ router.post('/report',function (req , res) {
         });
     }
     else
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
 });
 
 module.exports = router;
