@@ -7,6 +7,8 @@
         }
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../routes/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="../styles/new.css" />
     <title>Msrmh-Quiz page</title>
 
@@ -17,7 +19,7 @@
 
 <body>
 <div style="width: 100%">
-    <div style="display: block; font-size: 0px;white-space: nowrap; overflow: hidden; background-size: 100% 100%;">
+    <div style="display: block; font-size: 0px;white-space: nowrap; overflow: hidden; background-size: 100% 100%; width: 100%">
         <div style="display: inline-block; height: auto">
             <img src="/images/purple-logo.jpg" alt="" />
         </div>
@@ -71,13 +73,29 @@
             <% } %>
         </div>
         <script>
-            function fun() {
+            function func() {
                 var ask = window.confirm("DO YOU WANT TO FINISH THE TEST?");
                 if (ask) {
                     delete_cookie('seconds');
                     delete_cookie('minutes');
                     window.location.href = "/fin";
                 }
+            }
+            function fun() {
+                swal({
+                        title: "Are you sure?",
+                        text: "Do you want to finish the test",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, finish",
+                        closeOnConfirm: false
+                    },
+                    function(){
+                        delete_cookie('seconds');
+                        delete_cookie('minutes');
+                        window.location.href = "/fin";
+                });
             }
         </script>
     </div>
@@ -163,6 +181,6 @@
         </div>
     </div>
 </div>
-<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 20%">
+<img src="/images/l1.jpg" style="width: 100%; padding-top: 20%">
 </body>
 </html>
