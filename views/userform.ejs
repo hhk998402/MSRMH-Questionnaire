@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>LOGIN-Msrmh</title>
     <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+
 </head>
 <body>
 <div id="page">
@@ -13,10 +14,11 @@
     <div id="header">* Required </div>
     <div id="main">
         <div class="content">
+            <p id="lessQuestions" style="color: red; text-align: center"><%=msg%></p>
+            <p style="color: red; text-align: center; "><%= msg1%></p><br>
             <div class="form-style-5">
                 <form action="/userform" method="post">
                     <fieldset >
-                    <p id="lessQuestions" style="color: red; text-align: center"><%=msg%></p><br><br>
                         <legend><span class="number">1</span> Enter Info</legend>
                         <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter your name: * <br></label>
                         <input type="text" name="field1" placeholder="Your Name *" required="required" >
@@ -71,7 +73,6 @@
 
                             }
                         </script>
-
                         <label for="job" style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ">Select Department : *</label>
                         <select id="job" name="field4">
                             <%
@@ -91,9 +92,10 @@
             </div>
         </div>
     </div>
-<div id="footer" style="padding-top: 0px"></div>
+    <div id="footer" style="padding-top: 0px"></div>
+
 </div>
-<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 4%">
+<img src="/images/l1.jpg" style="width: 100%;  padding-top: 4%">
 
 </body>
 </html>
