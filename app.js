@@ -64,7 +64,9 @@ app.get('/', function (req, res) {
     res.render('firstpage.ejs');
 });
 app.post('/adm', function (req, res, next) {
-    res.render('admin.ejs');
+    res.render('admin.ejs',{
+        msg:""
+    });
 });
 var con = mysql.createConnection({
     host: "localhost",
@@ -76,7 +78,9 @@ var con = mysql.createConnection({
 var arr = [];
 app.post('/usr', function (req, res, next) {
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+
     req.session.destroy();
+
     var arrlength;
     var msg="";
     function show(callback) {
@@ -94,7 +98,8 @@ app.post('/usr', function (req, res, next) {
         res.render('userform.ejs', {
             arr: arr,
             arrlength: arrlength,
-            msg : msg
+            msg : msg,
+            msg1:""
         });
     });
 });
@@ -166,7 +171,9 @@ app.post('/admin', urlencodedparser, function (req, res, next) {
             }
         }
         if (i === id[0].max) {
-            res.render('admin.ejs');
+            res.render('admin.ejs',{
+                msg:"Incorrect username / password"
+            });
         }
     });
 });
@@ -268,7 +275,9 @@ app.get('/admin', function (req, res, next) {
         });
     }
     else{
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 
 });
@@ -333,7 +342,9 @@ app.post('/admins', function (req, res, next) {
         });
     }
     else{
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 
 });
@@ -346,11 +357,15 @@ app.post('/mail', urlencodedparser, function (req, res, next) {
     for (i = 0; i < id[0].max; i++)
         if (req.body.user === correctuser[i].username) {
             sendinfo.sendmail(i + 1);
-            res.render('admin.ejs');
+            res.render('admin.ejs',{
+                msg:""
+            });
             break;
         }
     if (i === id[0].max) {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 
@@ -420,7 +435,8 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
                     res.render('userform.ejs', {
                         arr: arr,
                         arrlength: arrlength,
-                        msg :msg
+                        msg :msg,
+                        msg1:""
                     });
                 }
 
@@ -438,8 +454,8 @@ app.post('/userform', urlencodedparser, function (req, res, next) {
             res.render('userform.ejs', {
                 arr: arr,
                 arrlength: arrlength,
-                msg:msg
-
+                msg:msg,
+                msg1:"Incorrect password"
             });
         }
     });
@@ -452,7 +468,9 @@ app.post('/adlogin', function (req, res, next) {
         res.render('adminrights.ejs');
     }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }});
 
 app.post('/add', urlencodedparser, function (req, res, next) {
@@ -467,7 +485,9 @@ app.post('/add', urlencodedparser, function (req, res, next) {
         });
     }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 
 });
@@ -481,7 +501,9 @@ app.post('/delete', urlencodedparser, function (req, res, next) {
 
         });    }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 
 });
@@ -497,7 +519,9 @@ app.post('/change', urlencodedparser, function (req, res, next) {
             res.render('adminrights.ejs');
         });    }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 
@@ -506,7 +530,9 @@ app.post('/quizdetail', function (req, res, next) {
         res.render('quizdetails.ejs');
     }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }});
 
 
@@ -520,7 +546,9 @@ app.post('/quizd', urlencodedparser, function (req, res, next) {
             res.render('quizdetails.ejs');
         })    }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 app.post('/newuserpwd', urlencodedparser, function (req, res, next) {
@@ -533,7 +561,9 @@ app.post('/newuserpwd', urlencodedparser, function (req, res, next) {
             res.render('quizdetails.ejs');
         })    }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 
@@ -542,7 +572,9 @@ app.post('/view', function (req, res, next) {
         res.render('info.ejs');
     }
     else {
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }});
 
 app.post('/quesc', function (req, res, next) {
@@ -555,7 +587,9 @@ app.post('/aques', urlencodedparser, function (req, res, next) {
         res.render('adminpage.ejs');
     }
     else{
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 app.post('/addit', function (req, res) {
@@ -563,7 +597,9 @@ app.post('/addit', function (req, res) {
         res.render('add.ejs');
     }
     else{
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 })
 app.post('/logout', function (req, res) {
@@ -591,11 +627,6 @@ app.use(function (err, req, res, next) {
 
 
 module.exports = app;
-
-
-
-
-
 
 
 
