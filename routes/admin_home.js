@@ -143,7 +143,9 @@ router.get('/admin/:dept', function (req, res, next) {
             res.redirect('/newpage');
     }
     else{
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 router.post('/admin/:dept', function (req, res) {
@@ -210,7 +212,9 @@ router.post('/admin/:dept', function (req, res) {
         console.log("exit");
     }
     else{
-        res.render('admin.ejs');
+        res.render('admin.ejs',{
+            msg:""
+        });
     }
 });
 
@@ -299,9 +303,6 @@ function renderpage(req,res) {
 
             /* dates : dates,
              dateCount : dateCount1*/
-
-           /* dates : dates,
-            dateCount : dateCount1*/
         });
     }
     else if(searchDetails === undefined && searchattempt === 1){
@@ -350,8 +351,6 @@ function renderpage(req,res) {
 
             /* dates : dates,
              dateCount : dateCount1*/
-           /* dates : dates,
-            dateCount : dateCount1*/
         });
     }
 
