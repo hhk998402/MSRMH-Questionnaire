@@ -116,7 +116,9 @@ router.post('/rep', function (req, res) {
     });
    }
     else
-        res.render('admin.ejs');
+       res.render('admin.ejs',{
+            msg:""
+        });
 
 });
 
