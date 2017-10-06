@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "mysql12345XXX",
-    database: "project"
+    database: "questionnaire"
 });
 connection.connect(function (err) {
     if (err) throw err;
