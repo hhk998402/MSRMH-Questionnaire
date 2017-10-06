@@ -1,0 +1,46 @@
+ CREATE TABLE `nursing` (
+  `name` text NOT NULL,
+  `mobile` text NOT NULL,
+  `email` text NOT NULL,
+  `age` int(11) NOT NULL,
+  `qualifications` varchar(500) NOT NULL,
+  `knc` varchar(500) NOT NULL,
+  `experience` varchar(500) NOT NULL,
+  `job` varchar(500) NOT NULL,
+  `salaryp` varchar(500) NOT NULL,
+  `salarye` varchar(100) NOT NULL,
+  `result` int(11) DEFAULT '0',
+  `questionid` text,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 
+
+CREATE TABLE `nursing_question_list` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(10000) DEFAULT NULL,
+  `ans1` varchar(1000) DEFAULT NULL,
+  `ans2` varchar(1000) DEFAULT NULL,
+  `ans3` varchar(1000) DEFAULT NULL,
+  `ans4` varchar(1000) DEFAULT NULL,
+  `correct` int(11) DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8
+
+ CREATE TABLE `user` (
+  `password` text NOT NULL,
+  `timelimit` int(11) NOT NULL,
+  `questions` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `dep` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `depname` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 
+
+ CREATE TABLE `admins` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `userName` text NOT NULL,
+  `password` text,
+  `email` text NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 
