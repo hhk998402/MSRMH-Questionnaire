@@ -15,7 +15,7 @@
     "express-session": "^1.15.3",
     "hashmap": "^2.1.0",
     "json-object": "0.0.3",
-    "morgan": "~1.8.1",
+    "morgan": "~1.9.1",
     "mysql": "^2.13.0",
     "nodemailer": "^4.0.1",
     "serve-favicon": "~2.4.2"
