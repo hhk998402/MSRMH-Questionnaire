@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var session = require('express-session');
+require('dotenv').config();
 
 var sendinfo = require('./routes/sendmail.js');
 var index = require('./routes/index');
@@ -69,10 +70,10 @@ app.post('/adm', function (req, res, next) {
     });
 });
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "mysql12345XXX",
-    database:"questionnaire",
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
     dateStrings: 'date'
 });
 var arr = [];
